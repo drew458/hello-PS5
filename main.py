@@ -31,7 +31,7 @@ while True:
     soup = BeautifulSoup(response.text, "lxml")
 
     # if the number of times the word "Digital Edition" occurs on the page is less than 1
-    if str(soup).find("Digital Edition") == -1:
+    if str(soup).find("Digital Edition") == -1 and str(soup).find_all("h3", string="Playstation 5") == -1:
         count = count + 1
         print("Check number", count, ", nothing found, i'll keep trying...")
         # wait 5 minutes
@@ -39,10 +39,8 @@ while True:
         # continue with the script
         continue
 
-    # str(soup).find_all("h3", string="Playstation 5") == -1
-
     # but if the word "Digital Edition" occurs any other number of times
     else:
         print("FOUND!!!! Go check it out now!")
 
-        break
+        #break
