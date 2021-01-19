@@ -4,7 +4,6 @@ import time
 import platform
 import os
 
-
 # This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition will be added when available,
 # and if found, shows it and emails me.
 # If it does not find some text, it waits 5 seconds and downloads the page again.
@@ -12,9 +11,10 @@ import os
 # Windows notifications
 if platform.system() == "Windows":
     from win10toast import ToastNotifier
+
     toaster = ToastNotifier()
 
-print("HI! I'm a PS5-availability finder in the MediaWorld website. Let's see if I can find it...")
+print("HI! I'm a PS5-availability finder in the MediaWorld website. Let's see if I can find something...")
 print()
 
 count = 0
@@ -29,9 +29,9 @@ while True:
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
     # download the page
-    response = requests.get(url, headers=headers)
+    page = requests.get(url, headers=headers)
     # parse the downloaded page and grab all text, then
-    soup = BeautifulSoup(response.text, "lxml")
+    soup = BeautifulSoup(page.text, "lxml")
 
     # if the number of times the word "Digital Edition" occurs on the page is less than 1
     if str(soup).find("Digital Edition") == -1 and str(soup).find_all("h3", string="Playstation 5") == -1:
@@ -45,5 +45,8 @@ while True:
     # but if the word "Digital Edition" occurs any other number of times
     else:
         print("FOUND!!!! Go check it out now!")
-
-        #break
+        # Windows only: send notification
+        if platform.system() == "Windows":
+            global toaster
+            toaster.show_toast("FOUND!!!! Go check it out now!")
+        break
