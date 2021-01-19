@@ -1,15 +1,18 @@
-# Import requests (to download the page)
 import requests
-
-# Import BeautifulSoup (to parse what we download)
 from bs4 import BeautifulSoup
-
-# Import Time (to add a delay between the times the scape runs)
 import time
+import platform
+import os
+
 
 # This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition will be added when available,
 # and if found, shows it and emails me.
 # If it does not find some text, it waits 5 seconds and downloads the page again.
+
+# Windows notifications
+if platform.system() == "Windows":
+    from win10toast import ToastNotifier
+    toaster = ToastNotifier()
 
 print("HI! I'm a PS5-availability finder in the MediaWorld website. Let's see if I can find it...")
 print()
