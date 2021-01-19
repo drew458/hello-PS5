@@ -11,3 +11,8 @@ Before starting the script, you need to install the following external modules t
 ## Usage
 
 The refresh rate is configurable with adjustable delay.
+
+## Future Updates
+
+I'm working to make this script running on a Telegram bot.
+Yes, it's a cool idea, but I don't have that much time to implemetate it quickly.
