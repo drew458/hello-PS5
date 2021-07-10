@@ -1,6 +1,7 @@
 import platform
 import time
 import requests
+import urllib
 from bs4 import BeautifulSoup
 
 # This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition will be added when available,
@@ -68,4 +69,7 @@ while True:
         if platform.system() == "Windows":
             # global toaster
             toaster.show_toast("FOUND!!!! Go check it out now!")
+        notification_url = 'https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s' % (
+            '1803083335:AAGMrjfqUEy0oLpm58HpCzqSljSj7NXdOsE', '-502981583', urllib.parse.quote_plus('FOUND!!!! Go check it out now!'))
+        _ = requests.get(notification_url, timeout=10)
         break
