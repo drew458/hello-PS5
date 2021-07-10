@@ -9,10 +9,10 @@ from bs4 import BeautifulSoup
 # If it does not find some text, it waits 5 seconds and downloads the page again.
 
 # Windows notifications
-if platform.system() == "Windows":
-    from win10toast import ToastNotifier
+#if platform.system() == "Windows":
+#    from win10toast import ToastNotifier
 
-    toaster = ToastNotifier()
+#    toaster = ToastNotifier()
 
 print("HI! I'm a PS5-availability finder in the MediaWorld website. Let's see if I can find something...")
 print()
@@ -66,9 +66,11 @@ while True:
     if not presenti:
         print("FOUND!!!! Go check it out now!")
         # Windows only: send notification
-        if platform.system() == "Windows":
-            # global toaster
-            toaster.show_toast("FOUND!!!! Go check it out now!")
+        #if platform.system() == "Windows":
+        #   # global toaster
+        #    toaster.show_toast("FOUND!!!! Go check it out now!")
+
+        # telegram bot notification
         notification_url = 'https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s' % (
             '1803083335:AAGMrjfqUEy0oLpm58HpCzqSljSj7NXdOsE', '-502981583', urllib.parse.quote_plus('FOUND!!!! Go check it out now!'))
         _ = requests.get(notification_url, timeout=10)
