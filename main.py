@@ -1,8 +1,7 @@
+import platform
+import time
 import requests
 from bs4 import BeautifulSoup
-import time
-import platform
-import os
 
 # This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition will be added when available,
 # and if found, shows it and emails me.
@@ -22,7 +21,8 @@ count = 0
 # while this is true (it is true by default)
 while True:
     # set the url
-    url = "https://www.mediaworld.it/search/playstation%205?category=Console%20e%20PC%20Gaming&category2=Sony%20Playstation%205&adult=0&orderBy=sortPrice.desc"
+    url = "https://games.mediaworld.it/"
+    # url3 = "https://www.mediaworld.it/search/playstation%205?category=Console%20e%20PC%20Gaming&category2=Sony%20Playstation%205&adult=0&orderBy=sortPrice.desc"
     # url2 = "https://www.mediaworld.it/search/playstation%205"
 
     # set the headers like we are a browser
@@ -31,22 +31,41 @@ while True:
     # download the page
     page = requests.get(url, headers=headers)
     # parse the downloaded page and grab all text, then
-    soup = BeautifulSoup(page.text, "lxml")
+    soup = BeautifulSoup(page.content, "html.parser")
 
-    # if the number of times the word "Digital Edition" occurs on the page is less than 1
-    if str(soup).find("Digital Edition") == -1 and str(soup).find_all("h3", string="Playstation 5") == -1:
+    # retain all the strings inside h1 and h3 tags
+    child_soup_h1 = soup.find_all('h1')
+    child_soup_h3 = soup.find_all('h3')
+
+    # keywords
+    texth1 = 'Le console sono in arrivo. Continua a seguirci per scoprire quando la vendita sarà aperta.'
+    texth3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
+
+    presenti = False
+
+    # the strings inside the tags matches the keywords?
+    for i in child_soup_h1:
+        if i.string == texth1:
+            presenti = True
+
+    for i in child_soup_h3:
+        if i.string == texth3:
+            presenti = True
+
+    # if the keywords are there, keep searching...
+    if presenti:
         count = count + 1
         print("Check number", count, ", nothing found, i'll keep trying...")
         # wait 5 minutes
-        time.sleep(300)
+        time.sleep(600)
         # continue with the script
         continue
 
-    # but if the word "Digital Edition" occurs any other number of times
-    else:
+    # but if the words above don't occur...
+    if not presenti:
         print("FOUND!!!! Go check it out now!")
         # Windows only: send notification
         if platform.system() == "Windows":
-            global toaster
+            # global toaster
             toaster.show_toast("FOUND!!!! Go check it out now!")
         break
