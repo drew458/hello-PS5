@@ -38,10 +38,10 @@ while True:
 
     # keywords
     texth1 = 'Le console sono in arrivo. Continua a seguirci per scoprire quando la vendita sarà aperta.'
-    texth3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
+    #texth3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito. Per prepararti all'
 
     # if the keywords are there, keep searching...
-    if checkStrings.checkH1(child_soup_h1, texth1) is True and checkStrings.checkH3(child_soup_h3, texth3) is True:
+    if checkStrings.checkH1(child_soup_h1, texth1) is True:  #and checkStrings.checkH3(child_soup_h3, texth3) is True:
         count = count + 1
         print("Check number", count, ", nothing found, i'll keep trying...")
         # wait 5 minutes
