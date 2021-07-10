@@ -1,26 +1,20 @@
-import platform
 import time
 import requests
-import urllib
-import os
 from bs4 import BeautifulSoup
+
+import sendTelegramBotNotification as stbn
 
 # This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition will be added when available,
 # and if found, shows it and emails me.
 # If it does not find some text, it waits 5 seconds and downloads the page again.
 
 # Windows notifications
-#if platform.system() == "Windows":
-#    from win10toast import ToastNotifier
-
-#    toaster = ToastNotifier()
+# import sendWindowsNotification as swn
 
 print("HI! I'm a PS5-availability finder in the MediaWorld website. Let's see if I can find something...")
 print()
 
 count = 0
-TOKEN = os.environ["TOKEN"]
-CHAT_ID = os.environ["CHAT_ID"]
 
 # while this is true (it is true by default)
 while True:
@@ -68,13 +62,9 @@ while True:
     # but if the words above don't occur...
     if not presenti:
         print("FOUND!!!! Go check it out now!")
-        # Windows only: send notification
-        #if platform.system() == "Windows":
-        #   # global toaster
-        #    toaster.show_toast("FOUND!!!! Go check it out now!")
+        # Windows notification
+        # swn.sendNotification()
 
-        # telegram bot notification
-        notification_url = 'https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s' % (
-            TOKEN, CHAT_ID, urllib.parse.quote_plus('FOUND!!!! Go check it out now!'))
-        _ = requests.get(notification_url, timeout=10)
+        # Telegram bot notification
+        stbn.sendNotification()
         break

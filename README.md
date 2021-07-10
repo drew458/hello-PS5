@@ -8,11 +8,15 @@ Before starting the script, you need to install the following external modules t
 * `requests` (HTTP(S) requests)
 * `bs4` (BeautifulSoup)
 
-## Usage
+## Usage & Features
 
-The refresh rate is configurable with adjustable delay.
+The refresh rate is configurable with adjustable delay.  
+Configurable windows notifications (you just need to uncomment lines).  
+Configurable Telegram bot notification (change where your bot token and chat_id are stored; if you're thinking to deploy it on Heroku, see below).
+
+## Cloud deployment
+
+The script is ready for deployment on Heroku, which is what I use to run it on cloud and get the Telegram bot notifications.  
+The free tier on Heroku perfectly fits. In this case the bot token and chat it must go into the virtual environment variables (see the settings page on Heroku's dashboard).
 
 ## Future Updates
-
-I'm working to make this script running on a Telegram bot.
-Cool idea, but I don't have that much time to implemetate it quickly.
