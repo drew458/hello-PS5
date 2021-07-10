@@ -22,7 +22,8 @@ count = 0
 # while this is true (it is true by default)
 while True:
     # set the url
-    url = "https://www.mediaworld.it/search/playstation%205?category=Console%20e%20PC%20Gaming&category2=Sony%20Playstation%205&adult=0&orderBy=sortPrice.desc"
+    url = "https://games.mediaworld.it/"
+    #url3 = "https://www.mediaworld.it/search/playstation%205?category=Console%20e%20PC%20Gaming&category2=Sony%20Playstation%205&adult=0&orderBy=sortPrice.desc"
     # url2 = "https://www.mediaworld.it/search/playstation%205"
 
     # set the headers like we are a browser
@@ -33,8 +34,8 @@ while True:
     # parse the downloaded page and grab all text, then
     soup = BeautifulSoup(page.text, "lxml")
 
-    # if the number of times the word "Digital Edition" occurs on the page is less than 1
-    if str(soup).find("Digital Edition") == -1 and str(soup).find_all("h3", string="Playstation 5") == -1:
+    # if the string "le console sono in arrivo" if present, keep searching...
+    if str(soup).find("Le console sono in arrivo") != -1 and str(soup).find("quando la vendita sarà aperta") != -1:
         count = count + 1
         print("Check number", count, ", nothing found, i'll keep trying...")
         # wait 5 minutes
