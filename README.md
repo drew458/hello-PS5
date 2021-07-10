@@ -4,19 +4,20 @@ BeautifulSoup scraper running queries on the website of the (in)famous Italian s
 The script is compatible with Python 3.x versions.
 
 ## Configuration
-Before starting the script, you need to install the following external modules through CLI (Windows/Linux/Mac: `pip3 install [modulename]`):
+Before starting the script, you need to install the following external modules through CLI (Windows/Linux/Mac:  
+`pip3 install [modulename]`):
 * `requests` (HTTP(S) requests)
 * `bs4` (BeautifulSoup)
 
 ## Usage & Features
 
-The refresh rate is configurable with adjustable delay.  
-Configurable windows notifications (you just need to uncomment lines).  
-Configurable Telegram bot notification (change where your bot token and chat_id are stored; if you're thinking to deploy it on Heroku, see below).
+* Configurable refresh rate with adjustable delay. Default is 10 minutes (600 secs).  
+* Configurable windows notifications (you just need to uncomment lines).  
+* Configurable Telegram bot notification (change where your bot token and chat_id are stored; if you're thinking to deploy on Heroku, see below).
 
 ## Cloud deployment
 
 The script is ready for deployment on Heroku, which is what I use to run it on cloud and get the Telegram bot notifications.  
-The free tier on Heroku perfectly fits. In this case the bot token and chat it must go into the virtual environment variables (see the settings page on Heroku's dashboard).
+The free tier on Heroku perfectly fits. In this case bot token and chat it must go into the virtual environment variables (see the settings page on Heroku's dashboard).
 
 ## Future Updates
