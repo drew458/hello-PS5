@@ -12,10 +12,6 @@ Before starting the script, you need to install the following external modules t
 
 The refresh rate is configurable with adjustable delay.
 
-## Limitations
-
-Notifications work only on Windows atm.
-
 ## Future Updates
 
 I'm working to make this script running on a Telegram bot.
