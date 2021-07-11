@@ -2,7 +2,7 @@ import time
 
 import sendTelegramBotNotification as stbn
 import checkStrings
-import scrapeIt
+import scraper
 
 # This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition will be added when available,
 # and if found, notifies via Telegram bot and
@@ -24,10 +24,10 @@ while True:
     start = stats.performanceCounter()
 
     # Scrape the page
-    scrapedPage = scrapeIt.scrapeThePage()
+    scrapedPage = scraper.scrapeThePage()
 
     # Find the H1 tags
-    strings_h1 = scrapeIt.retainStringsInH1Class(scrapedPage)
+    strings_h1 = scraper.retainStringsInH1Class(scrapedPage)
     # strings_h3 = scrapeIt.retainStringsInH3Class(scrapedPage)
 
     # get statistics about the execution
