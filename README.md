@@ -20,6 +20,6 @@ The script is ready for deployment on Heroku, which is what I use to run it on c
 The free tier on Heroku perfectly fits. In this case the bot token and chat it must go into the virtual environment variables (see the settings page on Heroku's dashboard).  
 
 ## Telegram Bot
-If you just want to be notified when a PS5 becomes available at Mediaworld, add the bot to a group via `http://t.me/PS5scrapermw_bot`.
+If you just want to be notified when a PS5 becomes available at Mediaworld, add the bot to a group via`http://t.me/PS5scrapermw_bot`.
 
 ## Future Updates
