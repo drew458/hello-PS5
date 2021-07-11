@@ -1,8 +1,7 @@
 import time
 
-import sendTelegramBotNotification as stbn
-import checkStrings
-import scraper
+from src import stats, timeElapsed, sendTelegramBotNotification as stbn, scraper, checkStrings
+
 
 # This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition will be added when available,
 # and if found, notifies via Telegram bot and
@@ -10,7 +9,6 @@ import scraper
 
 # Windows notifications
 # import sendWindowsNotification as swn
-from src import stats, timeElapsed
 
 print("HI! I'm a PS5-availability finder in the MediaWorld website. Let's see if I can find something...")
 print()
@@ -49,7 +47,7 @@ while True:
         print("While I'm waiting, let's see some stats about the execution...")
         print()
 
-        #timeElapsed.checkTime(count)
+        # timeElapsed.checkTime(count)
 
         stats.printPerformanceResult(stats.getPerformanceResult(start, finish))
         print()
