@@ -23,3 +23,4 @@ The free tier on Heroku perfectly fits. In this case the bot token and chat it m
 If you just want to be notified when a PS5 becomes available at Mediaworld, add the bot to a group via`http://t.me/PS5scrapermw_bot`.
 
 ## Future Updates
+Displaying some more stats about the usage and elapsed time.
