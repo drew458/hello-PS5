@@ -31,5 +31,5 @@ def weeksCounter(week):
         sendTelegramBotNotification.sendNotification(MESSAGE)
     else:
         MESSAGE = (
-        "Guten Tag. ", week, " weeks are gone since I started looking at the website, nothing found so far...")
+            "Guten Tag. ", week, " weeks are gone since I started looking at the website, nothing found so far...")
         sendTelegramBotNotification.sendNotification(MESSAGE)
