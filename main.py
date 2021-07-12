@@ -1,6 +1,6 @@
 import time
 
-from src import stats, timeElapsed, sendTelegramBotNotification as stbn, scraper, checkStrings
+from src import stats, timeElapsed, sendTelegramBotNotification as stbn, scraper, checkStrings, IOConsole
 
 
 # This is a really simple script. The script downloads the page of MediaWorld where
@@ -10,13 +10,11 @@ from src import stats, timeElapsed, sendTelegramBotNotification as stbn, scraper
 # To enable Windows notifications, uncomment line below
 # import sendWindowsNotification as swn
 
-print("HI! I'm a PS5-availability finder in the MediaWorld website. Let's see if I can find something...")
-print()
-
 count = 0
 days = 0
 weeks = 0
-FOUND_MESSAGE = "FOUND!!!! Go check it out now!"
+
+IOConsole.printStartMessage()
 
 # while this is true (it is true by default)
 while True:
@@ -41,14 +39,13 @@ while True:
     # if the keywords are still there, keep searching...
     if checkStrings.checkH1(strings_h1, texth1) is True:  # and checkStrings.checkH3(strings_h3, texth3) is True
         count = count + 1
-        print("Check number", count, ", nothing found, i'll keep trying...")
-        print()
+        IOConsole.printCheckMessage(count)
 
         # wait 10 minutes
         time.sleep(600)
 
         # Show stats
-        print("While I'm waiting, let's see some stats about the execution...")
+        IOConsole.printWaitingStatsMessage()
         timeElapsed.checkTime(count, days, weeks)
         stats.printPerformanceResult(stats.getPerformanceResult(start, finish))
         print()
@@ -58,13 +55,13 @@ while True:
 
     # but if the words above don't occur... object found!
     else:
-        print(FOUND_MESSAGE)
+        IOConsole.printStartMessage()
 
         # To enable Windows notifications, uncomment line below
         # swn.sendNotification()
 
         # Telegram bot notification
-        stbn.sendNotification(FOUND_MESSAGE)
+        stbn.sendNotification(IOConsole.getFoundMessage())
 
-        # Adios
+        # Adiòs
         break
