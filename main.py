@@ -20,7 +20,7 @@ IOConsole.printStartMessage()
 while True:
 
     # start the count for execution statistics
-    start = stats.performanceCounter()
+    startScrape = stats.performanceCounter()
 
     # Scrape the page
     scrapedPage = scraper.scrapeThePage()
@@ -30,16 +30,20 @@ while True:
     # strings_h3 = scrapeIt.retainStringsInH3Class(scrapedPage)
 
     # get statistics about the execution
-    finish = stats.performanceCounter()
+    finishScrape = stats.performanceCounter()
 
     # Keywords
     texth1 = 'Le console sono in arrivo. Continua a seguirci per scoprire quando la vendita sarà aperta.'
     texth3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
 
+    startConditionalStatement = stats.performanceCounter()
+
     # if the keywords are still there, keep searching...
     if checkStrings.checkH1(strings_h1, texth1) is True:  # and checkStrings.checkH3(strings_h3, texth3) is True
         count = count + 1
         IOConsole.printCheckMessage(count)
+
+        finishConditionalStatement = stats.performanceCounter()
 
         # wait 10 minutes
         time.sleep(600)
@@ -47,7 +51,8 @@ while True:
         # Show stats
         IOConsole.printWaitingStatsMessage()
         timeElapsed.checkTime(count, days, weeks)
-        stats.printPerformanceResult(stats.getPerformanceResult(start, finish))
+        stats.printPerformanceResult(stats.getResult(startScrape, finishScrape))
+        stats.printConditionalStatementResult(stats.getResult(startConditionalStatement, finishConditionalStatement))
         print()
 
         # continue with the script (that is, go back at the top of the while loop)

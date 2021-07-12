@@ -7,12 +7,16 @@ def performanceCounter():
     return time.perf_counter()
 
 
-def getPerformanceResult(start, finish):
+def getResult(start, finish):
     return finish - start
 
 
 def printPerformanceResult(result):
     print(f"* Webpage and tags scraped in {result:0.4f} seconds")
+
+
+def printConditionalStatementResult(result):
+    print(f"* String presence check completed in {result:0.4f} seconds")
 
 
 def daysCounter(day, weeks):
