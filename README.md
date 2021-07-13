@@ -4,7 +4,7 @@ BeautifulSoup scraper running queries on the website of the (in)famous Italian s
 The script is compatible with Python 3.x versions.
 
 ## Telegram Bot
-If you just want to be notified when a PS5 becomes available at Mediaworld, add [the bot](https://t.me/PS5scrapermw_bot) to a group.
+If you just want to be notified when a PS5 becomes available at Mediaworld, add [the bot](https://t.me/PS5scrapermw_bot) to a Telegram group.
 
 ## Configuration
 Before starting the script, you need to install the following external modules through CLI (Windows/Linux/Mac):
