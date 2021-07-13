@@ -1,7 +1,7 @@
 from src import stats
 
 
-def checkTime(count, days, weeks):
+def checkDaysWeeksElapsed(count, days, weeks):
     if (count % 144) == 0:
         days += 1
         count = 0

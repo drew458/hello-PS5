@@ -11,6 +11,8 @@ Before starting the script, you need to install the following external modules t
 * `pip3 install requests` (HTTP(S) requests)
 * `pip3 install bs4` (BeautifulSoup)
 
+To run the script, `cd` into the folder and `python3 main.py`.
+
 ## Usage & Features
 
 The refresh rate is configurable with adjustable delay.  

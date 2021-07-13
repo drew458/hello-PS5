@@ -12,12 +12,11 @@ def printFoundMessage():
 
 
 def printCheckMessage(count):
-    print("Check number", count, ", nothing found, i'll keep trying...")
-    print()
+    print("Check number", count, ", nothing found, I won't give up...")
 
 
 def printWaitingStatsMessage():
-    print("While I'm waiting, let's see some stats about the execution...")
+    print("While waiting, let's see some stats about the execution...")
 
 
 def getFoundMessage():
