@@ -2,7 +2,6 @@ import time
 
 from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper, CheckStrings, IOConsole
 
-
 # This is a really simple script. The script downloads the page of MediaWorld where
 # the PS5 Digital Edition will be added when available, and if found, notifies via Telegram bot.
 # It keep searching every 10 minutes 'till something shows up.
@@ -55,7 +54,8 @@ while True:
         print()
 
         # wait 10 minutes
-        time.sleep(600)
+        # time.sleep(600)
+        TimeElapsed.countdown(600)
 
         # continue with the script (that is, go back at the top of the while loop)
         continue
