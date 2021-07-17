@@ -25,4 +25,5 @@ The script is ready for deployment on Heroku, which is what I use to run it on c
 The free tier on Heroku perfectly fits. In this case the bot token and chat it must go into the virtual environment variables (see the settings page on Heroku's dashboard).
 
 ## Future Updates
-Displaying some more stats about the usage and elapsed time.
+* Displaying some more stats about the usage and elapsed time.
+* Add a GUI.

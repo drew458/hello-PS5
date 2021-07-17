@@ -1,6 +1,6 @@
 import time
 
-from src import stats, timeElapsed, sendTelegramBotNotification as stbn, scraper, checkStrings, IOConsole
+from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper, CheckStrings, IOConsole
 
 
 # This is a really simple script. The script downloads the page of MediaWorld where
@@ -20,38 +20,38 @@ IOConsole.printStartMessage()
 while True:
 
     # start the count for execution statistics
-    startScrape = stats.performanceCounter()
+    startScrape = Stats.performanceCounter()
 
     # Scrape the page
-    scrapedPage = scraper.scrapeThePage()
+    scrapedPage = Scraper.scrapeThePage()
 
     # Find the H1 tags
-    strings_h1 = scraper.retainStringsInH1Class(scrapedPage)
+    strings_h1 = Scraper.retainStringsInH1Class(scrapedPage)
     # strings_h3 = scrapeIt.retainStringsInH3Class(scrapedPage)
 
     # get statistics about the execution
-    finishScrape = stats.performanceCounter()
+    finishScrape = Stats.performanceCounter()
 
     # Keywords
     TEXT_H1 = 'Le console sono in arrivo. Continua a seguirci per scoprire quando la vendita sarà aperta.'
     TEXT_H3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
 
     # Collecting stats about the conditional statement (if) performance
-    startConditionalStatement = stats.performanceCounter()
+    startConditionalStatement = Stats.performanceCounter()
 
     # if the keywords are still there, keep searching...
-    if checkStrings.checkH1(strings_h1, TEXT_H1) is True:  # and checkStrings.checkH3(strings_h3, texth3) is True
+    if CheckStrings.checkH1(strings_h1, TEXT_H1) is True:  # and checkStrings.checkH3(strings_h3, texth3) is True
         count = count + 1
         IOConsole.printCheckMessage(count)
 
         # Collecting stats about the conditional statement (if) performance
-        finishConditionalStatement = stats.performanceCounter()
+        finishConditionalStatement = Stats.performanceCounter()
 
         # Show stats
         IOConsole.printWaitingStatsMessage()
-        timeElapsed.checkDaysWeeksElapsed(count, days, weeks)
-        stats.printPerformanceResult(stats.getResult(startScrape, finishScrape))
-        stats.printConditionalStatementResult(stats.getResult(startConditionalStatement, finishConditionalStatement))
+        TimeElapsed.checkDaysWeeksElapsed(count, days, weeks)
+        Stats.printPerformanceResult(Stats.getResult(startScrape, finishScrape))
+        Stats.printConditionalStatementResult(Stats.getResult(startConditionalStatement, finishConditionalStatement))
         print()
 
         # wait 10 minutes
