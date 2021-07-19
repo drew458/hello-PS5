@@ -4,6 +4,10 @@ import requests
 
 
 def sendNotification():
+    """
+    Sends a Telegram notification via a bot.
+    """
+
     # Retain the Telegram Bot token from environment variables
     TOKEN = os.environ["TOKEN"]
     # Retain the Telegram chat_id from environment variables

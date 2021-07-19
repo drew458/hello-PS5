@@ -1,11 +1,11 @@
 import time
 
-from src import stats, timeElapsed, sendTelegramBotNotification as stbn, scraper, checkStrings
+from src import stats, timeElapsed, sendTelegramBotNotification as stbn, scraper, checkStrings, hourlyCheck
 
-
-# This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition will be added when available,
-# and if found, notifies via Telegram bot and
-# If it does not find some text, it waits 5 seconds and downloads the page again.
+""" This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition 
+    will be added when available, and if found, notifies via Telegram bot.
+    If nothing is found it repeats after 10 minutes.
+"""
 
 # Windows notifications
 # import sendWindowsNotification as swn
@@ -25,7 +25,7 @@ while True:
     scrapedPage = scraper.scrapeThePage()
 
     # Find the H1 tags
-    strings_h1 = scraper.retainStringsInH1Class(scrapedPage)
+    strings_h1 = scraper.retainStringsInH1Tags(scrapedPage)
     # strings_h3 = scrapeIt.retainStringsInH3Class(scrapedPage)
 
     # get statistics about the execution
@@ -34,6 +34,9 @@ while True:
     # Keywords
     texth1 = 'Le console sono in arrivo. Continua a seguirci per scoprire quando la vendita sarà aperta.'
     texth3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
+
+    # perform a check every hour
+    hourlyCheck.everyHourCheck()
 
     # if the keywords are still there, keep searching...
     if checkStrings.checkH1(strings_h1, texth1) is True:  # and checkStrings.checkH3(strings_h3, texth3) is True

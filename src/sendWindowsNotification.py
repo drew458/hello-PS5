@@ -2,6 +2,9 @@ import platform
 
 
 def sendNotification(self):
+    """
+        Sends a Windows system notifcation.
+    """
     if platform.system() == "Windows":
         from win10toast import ToastNotifier
 
