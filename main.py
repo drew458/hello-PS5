@@ -1,7 +1,7 @@
 import time
 from threading import Thread
 
-from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper, CheckStrings, hourlyCheck
+from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper, CheckStrings, hourlyCheck, IOConsole
 
 """ This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition 
     will be added when available, and if found, notifies via Telegram bot.
@@ -22,24 +22,28 @@ def main():
     # while this is true (it is true by default)
     while True:
 
-        # start the count for execution statistics
+        # start the timer for execution statistics
         startScrape = Stats.performanceCounter()
 
-        # Scrape the page
+        # scrape the page
         scrapedPage = Scraper.scrapeThePage()
 
-        # Find the H1 tags
-        strings_h1 = Scraper.retainStringsInH1Class(scrapedPage)
+        # find the H1 tags
+        strings_h1 = Scraper.retainStringsInH1Tags(scrapedPage)
 
-        # get statistics about the execution
+        # start the timer for execution statistics
         finishScrape = Stats.performanceCounter()
 
-        # Keywords
+        # keywords
         TEXT_H1 = 'Le console sono in arrivo. Continua a seguirci per scoprire quando la vendita sarà aperta.'
-        TEXT_H3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
+        # TEXT_H3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
 
-        # Collecting stats about the conditional statement (if) performance
+        # collecting stats about the conditional statement (if) performance
         startConditionalStatement = Stats.performanceCounter()
+
+        # start the hourly check thread
+        new_thread = Thread(target=hourlyCheck.everyHourCheck)
+        new_thread.start()
 
         # if the keywords are still there, keep searching...
         if CheckStrings.checkH1(strings_h1, TEXT_H1) is True:  # and checkStrings.checkH3(strings_h3, texth3) is True

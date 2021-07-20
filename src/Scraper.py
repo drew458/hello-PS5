@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 
 
 def scrapeThePage():
-    """ Scrapes the webpage indentified by the url parameter.
-
+    """
+    Scrapes the webpage indentified by the url parameter.
     :return: the scraped page.
     """
     # set the url
