@@ -1,4 +1,3 @@
-import time
 from threading import Thread
 
 from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper, CheckStrings, HourlyCheck, IOConsole
@@ -42,8 +41,10 @@ def main():
         startConditionalStatement = Stats.performanceCounter()
 
         # start the hourly check thread
-        new_thread = Thread(target=HourlyCheck.everyHourCheck_OneMinuteDelay)
-        new_thread.start()
+        everyHourPlus1Minute_thread = Thread(target=HourlyCheck.everyHourCheck_OneMinuteDelay)
+        everyHourPlus1Minute_thread.start()
+        everyHourPlus15Secs_thread = Thread(target=HourlyCheck.everyHourCheck_15SecsDelay)
+        everyHourPlus15Secs_thread.start()
 
         # if the keywords are still there, keep searching...
         if CheckStrings.checkH1(strings_h1, TEXT_H1) is True:  # and checkStrings.checkH3(strings_h3, texth3) is True
