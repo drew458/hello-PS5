@@ -4,7 +4,7 @@ import urllib
 import requests
 
 
-def sendNotification():
+def sendNotification(found_message):
     """
     Sends a Telegram notification via a bot.
     """
@@ -16,5 +16,5 @@ def sendNotification():
 
     # Send notification
     notification_url = 'https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s' % (
-        TOKEN, CHAT_ID, urllib.parse.quote_plus('FOUND!!!! Go check it out now!'))
+        TOKEN, CHAT_ID, urllib.parse.quote_plus(found_message))
     _ = requests.get(notification_url, timeout=10)
