@@ -1,6 +1,7 @@
 import time
+from threading import Thread
 
-from src import stats, timeElapsed, sendTelegramBotNotification as stbn, scraper, checkStrings, hourlyCheck
+from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper, CheckStrings, hourlyCheck
 
 """ This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition 
     will be added when available, and if found, notifies via Telegram bot.
@@ -18,28 +19,28 @@ count = 0
 # while this is true (it is true by default)
 while True:
 
-    # start the count for execution statistics
-    start = stats.performanceCounter()
+    # start the timer for execution statistics
+    start = Stats.performanceCounter()
 
-    # Scrape the page
-    scrapedPage = scraper.scrapeThePage()
+    # scrape the page
+    scrapedPage = Scraper.scrapeThePage()
 
-    # Find the H1 tags
-    strings_h1 = scraper.retainStringsInH1Tags(scrapedPage)
-    # strings_h3 = scrapeIt.retainStringsInH3Class(scrapedPage)
+    # find the H1 tags
+    strings_h1 = Scraper.retainStringsInH1Tags(scrapedPage)
 
-    # get statistics about the execution
-    finish = stats.performanceCounter()
+    # start the timer for execution statistics
+    finish = Stats.performanceCounter()
 
-    # Keywords
+    # keywords
     texth1 = 'Le console sono in arrivo. Continua a seguirci per scoprire quando la vendita sarà aperta.'
-    texth3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
+    # texth3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
 
     # perform a check every hour
-    hourlyCheck.everyHourCheck()
+    new_thread = Thread(target=hourlyCheck.everyHourCheck)
+    new_thread.start()
 
     # if the keywords are still there, keep searching...
-    if checkStrings.checkH1(strings_h1, texth1) is True:  # and checkStrings.checkH3(strings_h3, texth3) is True
+    if CheckStrings.checkH1(strings_h1, texth1) is True:  # and checkStrings.checkH3(strings_h3, texth3) is True
         count = count + 1
         print("Check number", count, ", nothing found, i'll keep trying...")
 
@@ -52,7 +53,7 @@ while True:
 
         # timeElapsed.checkTime(count)
 
-        stats.printPerformanceResult(stats.getPerformanceResult(start, finish))
+        Stats.printPerformanceResult(Stats.getPerformanceResult(start, finish))
         print()
 
         # continue with the script (that is, go back at the top of the while loop)

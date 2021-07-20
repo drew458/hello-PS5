@@ -1,4 +1,4 @@
-from src import stats
+from src import Stats
 
 #days = 0
 
