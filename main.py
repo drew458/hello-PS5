@@ -8,66 +8,75 @@ from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper
     If nothing is found it repeats after 10 minutes.
 """
 
-# Windows notifications
+# To enable Windows notifications, uncomment line below
 # import sendWindowsNotification as swn
 
-print("HI! I'm a PS5-availability finder in the MediaWorld website. Let's see if I can find something...")
-print()
 
-count = 0
+def main():
+    count = 0
+    days = 0
+    weeks = 0
 
-# while this is true (it is true by default)
-while True:
+    IOConsole.printStartMessage()
 
-    # start the timer for execution statistics
-    start = Stats.performanceCounter()
+    # while this is true (it is true by default)
+    while True:
 
-    # scrape the page
-    scrapedPage = Scraper.scrapeThePage()
+        # start the count for execution statistics
+        startScrape = Stats.performanceCounter()
 
-    # find the H1 tags
-    strings_h1 = Scraper.retainStringsInH1Tags(scrapedPage)
+        # Scrape the page
+        scrapedPage = Scraper.scrapeThePage()
 
-    # start the timer for execution statistics
-    finish = Stats.performanceCounter()
+        # Find the H1 tags
+        strings_h1 = Scraper.retainStringsInH1Class(scrapedPage)
 
-    # keywords
-    texth1 = 'Le console sono in arrivo. Continua a seguirci per scoprire quando la vendita sarà aperta.'
-    # texth3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
+        # get statistics about the execution
+        finishScrape = Stats.performanceCounter()
 
-    # perform a check every hour
-    new_thread = Thread(target=hourlyCheck.everyHourCheck)
-    new_thread.start()
+        # Keywords
+        TEXT_H1 = 'Le console sono in arrivo. Continua a seguirci per scoprire quando la vendita sarà aperta.'
+        TEXT_H3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
 
-    # if the keywords are still there, keep searching...
-    if CheckStrings.checkH1(strings_h1, texth1) is True:  # and checkStrings.checkH3(strings_h3, texth3) is True
-        count = count + 1
-        print("Check number", count, ", nothing found, i'll keep trying...")
+        # Collecting stats about the conditional statement (if) performance
+        startConditionalStatement = Stats.performanceCounter()
 
-        # wait 10 minutes
-        time.sleep(600)
+        # if the keywords are still there, keep searching...
+        if CheckStrings.checkH1(strings_h1, TEXT_H1) is True:  # and checkStrings.checkH3(strings_h3, texth3) is True
+            count = count + 1
+            IOConsole.printCheckMessage(count)
 
-        # Show stats
-        print("While I'm waiting, let's see some stats about the execution...")
-        print()
+            # Collecting stats about the conditional statement (if) performance
+            finishConditionalStatement = Stats.performanceCounter()
 
-        # timeElapsed.checkTime(count)
+            # Show stats
+            IOConsole.printWaitingStatsMessage()
+            TimeElapsed.checkDaysWeeksElapsed(count, days, weeks)
+            Stats.printPerformanceResult(Stats.getResult(startScrape, finishScrape))
+            Stats.printConditionalStatementResult(
+                Stats.getResult(startConditionalStatement, finishConditionalStatement))
+            print()
 
-        Stats.printPerformanceResult(Stats.getPerformanceResult(start, finish))
-        print()
+            # wait 10 minutes
+            # time.sleep(600)
+            TimeElapsed.countdown(600)
 
-        # continue with the script (that is, go back at the top of the while loop)
-        continue
+            # continue with the script (that is, go back at the top of the while loop)
+            continue
 
-    # but if the words above don't occur...
-    else:
-        print("FOUND!!!! Go check it out now!")
+        # but if the words above don't occur... object found!
+        else:
+            IOConsole.printStartMessage()
 
-        # Windows notification
-        # swn.sendNotification()
+            # To enable Windows notifications, uncomment line below
+            # swn.sendNotification()
 
-        # Telegram bot notification
-        stbn.sendNotification()
+            # Telegram bot notification
+            stbn.sendNotification(IOConsole.getFoundMessage())
 
-        # Adios
-        break
+            # Adiòs
+            break
+
+
+if __name__ == "__main__":
+    main()

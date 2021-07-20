@@ -23,6 +23,7 @@ def scrapeThePage():
     return scraped_page
 
 
+
 def retainStringsInH1Tags(scrapedPage):
     """ Retains all the strings inside h1 tags.
 

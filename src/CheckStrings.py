@@ -12,7 +12,6 @@ def checkH1(strings_h1, text_h1):
             return True
     return False
 
-# Check if the string in h3 class is present
 # def checkH3(soup_h3, texth3):
     """Checks if the string in h3 tags is present.
 
