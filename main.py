@@ -1,11 +1,12 @@
 import time
+from threading import Thread
 
-from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper, CheckStrings, IOConsole
+from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper, CheckStrings, hourlyCheck
 
-
-# This is a really simple script. The script downloads the page of MediaWorld where
-# the PS5 Digital Edition will be added when available, and if found, notifies via Telegram bot.
-# It keep searching every 10 minutes 'till something shows up.
+""" This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition 
+    will be added when available, and if found, notifies via Telegram bot.
+    If nothing is found it repeats after 10 minutes.
+"""
 
 # To enable Windows notifications, uncomment line below
 # import sendWindowsNotification as swn
@@ -29,7 +30,6 @@ def main():
 
         # Find the H1 tags
         strings_h1 = Scraper.retainStringsInH1Class(scrapedPage)
-        # strings_h3 = scrapeIt.retainStringsInH3Class(scrapedPage)
 
         # get statistics about the execution
         finishScrape = Stats.performanceCounter()

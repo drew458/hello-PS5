@@ -2,7 +2,6 @@ import time
 
 from src import SendTelegramBotNotification
 
-
 def performanceCounter():
     return time.perf_counter()
 
