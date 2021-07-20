@@ -1,7 +1,7 @@
 import time
 from threading import Thread
 
-from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper, CheckStrings, hourlyCheck, IOConsole
+from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper, CheckStrings, HourlyCheck, IOConsole
 
 """ This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition 
     will be added when available, and if found, notifies via Telegram bot.
@@ -42,7 +42,7 @@ def main():
         startConditionalStatement = Stats.performanceCounter()
 
         # start the hourly check thread
-        new_thread = Thread(target=hourlyCheck.everyHourCheck)
+        new_thread = Thread(target=HourlyCheck.everyHourCheck_OneMinuteDelay)
         new_thread.start()
 
         # if the keywords are still there, keep searching...
