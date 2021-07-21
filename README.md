@@ -21,7 +21,7 @@ Configurable Telegram bot notification (change where your bot token and chat_id 
 
 ## Cloud deployment
 
-The script is ready for deployment on Heroku, which is what I use to run it on cloud and get the Telegram bot notifications.  
+The script is ready for deployment on Heroku, which is what I use to run it on the cloud and get the Telegram bot notifications.  
 The free tier on Heroku perfectly fits. In this case the bot token and chat it must go into the virtual environment variables (see the settings page on Heroku's dashboard).
 
 ## Future Updates

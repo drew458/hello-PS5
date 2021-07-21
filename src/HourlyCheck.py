@@ -1,7 +1,7 @@
 import schedule
 import datetime
 import time
-from src import Scraper, CheckStrings, SendTelegramBotNotification
+from src import Scraper, CheckStrings, SendTelegramBotNotification, IOConsole
 
 
 def job():
@@ -25,7 +25,7 @@ def job():
         # swn.sendNotification()
 
         # Telegram bot notification
-        SendTelegramBotNotification.sendNotification()
+        SendTelegramBotNotification.sendNotification(IOConsole.getFoundMessage())
     else:
         print("Hourly check of " + datetime.datetime.now().strftime("%H") + ":" + datetime.datetime.now().strftime("%M")
               + ":" + datetime.datetime.now().strftime("%S") + ", nothing found...")
