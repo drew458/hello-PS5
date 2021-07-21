@@ -27,16 +27,15 @@ def job():
         # Telegram bot notification
         SendTelegramBotNotification.sendNotification()
     else:
-        print("Hourly check of " + str(datetime.datetime.now().hour) + ":" + str(datetime.datetime.now().minute) +
-              ":" + str(datetime.datetime.now().second) + ", nothing found...")
+        print("Hourly check of " + datetime.datetime.now().strftime("%H") + ":" + datetime.datetime.now().strftime("%M")
+              + ":" + datetime.datetime.now().strftime("%S") + ", nothing found...")
+        print()
 
 
 def everyHourCheck_15SecsDelay():
     """
     Does the complete job of scraping and sending a notification, every hour and 15 secs.
     """
-    print("Started the hourly (plus 15 secs) check...")
-
     schedule.every().day.at("00:00:15").do(job)
     schedule.every().day.at("01:00:15").do(job)
     schedule.every().day.at("02:00:15").do(job)
@@ -71,8 +70,6 @@ def everyHourCheck_OneMinuteDelay():
     """
     Does the complete job of scraping and sending a notification, every hour and a minute.
     """
-    print("Started the hourly (plus one minute) check...")
-
     schedule.every().day.at("00:01").do(job)
     schedule.every().day.at("01:01").do(job)
     schedule.every().day.at("02:01").do(job)
