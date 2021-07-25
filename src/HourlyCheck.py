@@ -9,17 +9,17 @@ def job():
     Scrapes the page, checks if the string inseide the tags is present and then sends a notification.
     """
     # Scrape the page
-    scrapedPage = Scraper.scrapeThePage()
+    scraped_page = Scraper.scrapeThePage()
 
     # Find the H1 tags
-    strings_h1 = Scraper.retainStringsInH1Tags(scrapedPage)
+    strings_h1 = Scraper.retainStringsInH1Tags(scraped_page)
 
     # Keywords
     texth1 = 'Le console sono in arrivo. Continua a seguirci per scoprire quando la vendita sarà aperta.'
     texth3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
 
     if not CheckStrings.checkH1(strings_h1, texth1) is True:
-        print("FOUND!!!! Go check it out now!")
+        print(IOConsole.getFoundMessage())
 
         # Windows notification
         # swn.sendNotification()
@@ -70,30 +70,7 @@ def everyHourCheck_OneMinuteDelay():
     """
     Does the complete job of scraping and sending a notification, every hour and a minute.
     """
-    schedule.every().day.at("00:01").do(job)
-    schedule.every().day.at("01:01").do(job)
-    schedule.every().day.at("02:01").do(job)
-    schedule.every().day.at("03:01").do(job)
-    schedule.every().day.at("04:01").do(job)
-    schedule.every().day.at("05:01").do(job)
-    schedule.every().day.at("06:01").do(job)
-    schedule.every().day.at("07:01").do(job)
-    schedule.every().day.at("08:01").do(job)
-    schedule.every().day.at("09:01").do(job)
-    schedule.every().day.at("10:01").do(job)
-    schedule.every().day.at("11:01").do(job)
-    schedule.every().day.at("12:01").do(job)
-    schedule.every().day.at("13:01").do(job)
-    schedule.every().day.at("14:01").do(job)
-    schedule.every().day.at("15:01").do(job)
-    schedule.every().day.at("16:01").do(job)
-    schedule.every().day.at("17:01").do(job)
-    schedule.every().day.at("18:01").do(job)
-    schedule.every().day.at("19:01").do(job)
-    schedule.every().day.at("20:01").do(job)
-    schedule.every().day.at("21:01").do(job)
-    schedule.every().day.at("22:01").do(job)
-    schedule.every().day.at("23:01").do(job)
+    schedule.every().hour.at(":01").do(job)
 
     while True:
         schedule.run_pending()

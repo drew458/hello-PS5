@@ -22,44 +22,44 @@ def main():
     while True:
 
         # start the timer for execution statistics
-        startScrape = Stats.performanceCounter()
+        start_scrape = Stats.performanceCounter()
 
         # scrape the page
-        scrapedPage = Scraper.scrapeThePage()
+        scraped_page = Scraper.scrapeThePage()
 
         # find the H1 tags
-        strings_h1 = Scraper.retainStringsInH1Tags(scrapedPage)
+        strings_h1 = Scraper.retainStringsInH1Tags(scraped_page)
 
         # start the timer for execution statistics
-        finishScrape = Stats.performanceCounter()
+        finish_scrape = Stats.performanceCounter()
 
-        # keywords
-        TEXT_H1 = 'Le console sono in arrivo. Continua a seguirci per scoprire quando la vendita sarà aperta.'
-        # TEXT_H3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
-
-        # collecting stats about the conditional statement (if) performance
-        startConditionalStatement = Stats.performanceCounter()
+        # start collecting stats about the conditional statement (if) performance
+        start_conditional_statement = Stats.performanceCounter()
 
         # start the hourly check thread
-        everyHourPlus1Minute_thread = Thread(target=HourlyCheck.everyHourCheck_OneMinuteDelay)
-        everyHourPlus1Minute_thread.start()
-        everyHourPlus15Secs_thread = Thread(target=HourlyCheck.everyHourCheck_15SecsDelay)
-        everyHourPlus15Secs_thread.start()
+        every_hour_plus_1minute_thread = Thread(target=HourlyCheck.everyHourCheck_OneMinuteDelay)
+        every_hour_plus_1minute_thread.start()
+        every_hour_plus_15secs_thread = Thread(target=HourlyCheck.everyHourCheck_15SecsDelay)
+        every_hour_plus_15secs_thread.start()
+
+        # keywords to look for
+        TEXT_H1 = 'Le console sono in arrivo. Continua a seguirci per scoprire quando la vendita sarà aperta.'
+        # TEXT_H3 = 'Le tue console preferite torneranno disponibili nelle prossime settimane su questo sito.'
 
         # if the keywords are still there, keep searching...
         if CheckStrings.checkH1(strings_h1, TEXT_H1) is True:  # and checkStrings.checkH3(strings_h3, texth3) is True
             count = count + 1
-            IOConsole.printCheckMessage(count)
+            IOConsole.printCheckNumberMessage(count)
 
-            # Collecting stats about the conditional statement (if) performance
-            finishConditionalStatement = Stats.performanceCounter()
+            # finish collecting stats about the conditional statement (if) performance
+            finish_conditional_statement = Stats.performanceCounter()
 
             # Show stats
             IOConsole.printWaitingStatsMessage()
             TimeElapsed.checkDaysWeeksElapsed(count, days, weeks)
-            Stats.printPerformanceResult(Stats.getResult(startScrape, finishScrape))
+            Stats.printPerformanceResult(Stats.getResult(start_scrape, finish_scrape))
             Stats.printConditionalStatementResult(
-                Stats.getResult(startConditionalStatement, finishConditionalStatement))
+                Stats.getResult(start_conditional_statement, finish_conditional_statement))
             print()
 
             # wait 10 minutes
@@ -73,7 +73,7 @@ def main():
         else:
             IOConsole.printStartMessage()
 
-            # To enable Windows notifications, uncomment line below
+            # To enable Windows notifications, uncomment the line below
             # swn.sendNotification()
 
             # Telegram bot notification

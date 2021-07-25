@@ -11,7 +11,7 @@ def printFoundMessage():
     print(FOUND_MESSAGE)
 
 
-def printCheckMessage(count):
+def printCheckNumberMessage(count):
     print("Check number", count, ", nothing found, I won't give up...")
 
 
