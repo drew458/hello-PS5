@@ -10,6 +10,9 @@ If you just want to be notified when a PS5 becomes available at Mediaworld, add 
 Before starting the script, you need to install the following external modules through CLI (Windows/Linux/Mac):
 * `pip3 install requests` (HTTP(S) requests)
 * `pip3 install bs4` (BeautifulSoup)
+More briefly, just run:
+
+* `pip3 install -r requirements.txt`
 
 To run the script, `cd` into the folder and `python3 main.py`.
 
