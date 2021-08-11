@@ -20,7 +20,7 @@ To run the script, `cd` into the folder and `python3 main.py`.
 
 The refresh rate is configurable with adjustable delay.  
 Configurable windows notifications (you just need to uncomment lines).  
-Configurable Telegram bot notification (change where your bot token and chat_id are stored; if you're thinking to deploy it on Heroku, see below).
+Configurable Telegram bot notifications (change where your bot `token` and `chat_id` are stored; if you're thinking to deploy it on Heroku, see below).
 
 ## Cloud deployment
 
