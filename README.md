@@ -1,5 +1,7 @@
 # PS5-scraper
 
+[![MIT License](https://img.shields.io/github/license/drew458/ps5-scraper)](https://opensource.org/licenses/MIT)
+
 BeautifulSoup scraper running queries on the website of the (in)famous Italian store.
 The script is compatible with Python 3.x versions.
 
