@@ -1,6 +1,10 @@
 # PS5-scraper
 
-[![MIT License](https://img.shields.io/github/license/drew458/ps5-scraper)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](https://www.python.org/)
+[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/PS5scrapermw_bot)
+[![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)](https://www.heroku.com)
+[![Playstation 5](https://img.shields.io/badge/Playstation%205-003791?style=for-the-badge&logo=playstation-5&logoColor=white)](https://www.playstation.com/en-us/ps5/)
+[![MIT License](https://img.shields.io/github/license/drew458/ps5-scraper?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 BeautifulSoup scraper running queries on the website of the (in)famous Italian store.
 The script is compatible with Python 3.x versions.
