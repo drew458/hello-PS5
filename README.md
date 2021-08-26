@@ -21,13 +21,26 @@ Before starting the script, you need to install the following external modules t
 More briefly, just run:
 * `pip3 install -r requirements.txt`
 
-To run the script, `cd` into the folder and `python3 main.py`.
+To launch the script (without arguments), `cd` into the folder and `python3 main.py`.
 
 ## Usage & Features
 
-The refresh rate is configurable with adjustable delay.  
-Configurable windows notifications (you just need to uncomment lines).  
-Configurable Telegram bot notifications (change where your bot `token` and `chat_id` are stored; if you're thinking to deploy it on Heroku, see below).
+* The refresh rate is configurable with adjustable delay.  
+* Configurable windows notifications (you just need to uncomment lines).  
+* Configurable Telegram bot notifications (change where your bot `token` and `chat_id` are stored; if you're thinking to deploy it on Heroku, see below).
+
+When launching the script you can pass it the following arguments:
+```
+  --help                  Show help                                                                            [boolean]
+  --t                     The Telegram bot token.                                                              [string]
+  --c                     The Telegram bot chat_id.                                                            [array]
+```
+
+Example:
+```
+python3 main.py --t YOURTOKEN --c YOURCHATID
+```
+
 
 ## Cloud deployment
 
@@ -37,5 +50,5 @@ The script is ready for deployment on Heroku, which is what I use to run it on t
 The free tier on Heroku perfectly fits. In this case the bot token and chat it must go into the virtual environment variables (see the settings page on Heroku's dashboard).
 
 ## Future Updates
-* Displaying some more stats about the usage and elapsed time.
+* Add Amazon as a website to scrape the PS5 availability.
 * Add a GUI.
