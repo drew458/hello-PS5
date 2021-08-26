@@ -31,9 +31,9 @@ To launch the script (without arguments), `cd` into the folder and `python3 main
 
 When launching the script you can pass it the following arguments:
 ```
-  --help                  Show help                                                                            [boolean]
-  --t                     The Telegram bot token.                                                              [string]
-  --c                     The Telegram bot chat_id.                                                            [array]
+  --help                  Show help                                                                                [boolean]
+  --t                     The Telegram bot token.                                                                  [string]
+  --c                     The Telegram bot chat_id.                                                                [array]
 ```
 
 Example:
