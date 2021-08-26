@@ -31,9 +31,9 @@ To launch the script (without arguments), `cd` into the folder and `python3 main
 
 When launching the script you can pass it the following arguments:
 ```
-  --help                  Show help                                                               [boolean]
+  --help                  Show help                                                               
   --t                     The Telegram bot token.                                                 [string]
-  --c                     The Telegram bot chat_id.                                               [array]
+  --c                     The Telegram bot chat_id.                                               [string]
 ```
 
 Example:
@@ -46,8 +46,7 @@ python3 main.py --t YOURTOKEN --c YOURCHATID
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-The script is ready for deployment on Heroku, which is what I use to run it on the cloud and get the Telegram bot notifications.  
-The free tier on Heroku perfectly fits. In this case the bot token and chat it must go into the virtual environment variables (see the settings page on Heroku's dashboard).
+The script is ready for deployment on Heroku, which is what I use to run it continuously on the cloud. The free tier on Heroku perfectly fits. In this case the Telegram bot token and chat it must go into the virtual environment variables (see the settings page on Heroku's dashboard).
 
 ## Future Updates
 * Add Amazon as a website to scrape the PS5 availability.
