@@ -1,5 +1,6 @@
-FOUND_MESSAGE = "FOUND IT! Go check it out now at games.mediaworld.it"
 START_MESSAGE = "HI! I'm a PS5-availability finder in the MediaWorld website. Let's see if I can find something..."
+FOUND_MESSAGE = "FOUND IT! Go check it out now at games.mediaworld.it"
+ADIOS_MESSAGE = "My job here is done! Adiòs..."
 
 
 def printStartMessage():
@@ -9,6 +10,10 @@ def printStartMessage():
 
 def printFoundMessage():
     print(FOUND_MESSAGE)
+
+
+def printAdiosMessage():
+    print()
 
 
 def printCheckNumberMessage(count):

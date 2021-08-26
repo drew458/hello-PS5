@@ -1,5 +1,6 @@
+import sys
 from threading import Thread
-
+import argparse
 from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper, CheckStrings, HourlyCheck, IOConsole
 
 """ This is a really simple script. The script downloads the page of MediaWorld where the PS5 Digital Edition 
@@ -7,11 +8,18 @@ from src import Stats, TimeElapsed, SendTelegramBotNotification as stbn, Scraper
     If nothing is found it repeats after 10 minutes.
 """
 
+
 # To enable Windows notifications, uncomment line below
 # import sendWindowsNotification as swn
 
 
 def main():
+    parser = argparse.ArgumentParser(description='Insert the Telegram bot Token and Chat_ID to set notifications')
+    parser.add_argument("--t", default=None, type=str, help="The Telegram Bot token")
+    parser.add_argument("--c", default=None, type=str, help="The Telegram Bot chat_id")
+
+    args = parser.parse_args()
+
     count = 0
     days = 0
     weeks = 0
@@ -71,16 +79,20 @@ def main():
 
         # but if the words above don't occur... object found!
         else:
-            IOConsole.printStartMessage()
+            IOConsole.printFoundMessage()
 
             # To enable Windows notifications, uncomment the line below
             # swn.sendNotification()
 
             # Telegram bot notification
-            stbn.sendNotification(IOConsole.getFoundMessage())
+            if args.t and args.c is not None:
+                stbn.sendNotification(args.t, args.c, IOConsole.getFoundMessage())
 
-            # Adiòs
             break
+
+    # Adiòs
+    IOConsole.printAdiosMessage()
+    sys.exit()
 
 
 if __name__ == "__main__":
